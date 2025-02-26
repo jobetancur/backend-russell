@@ -15,27 +15,27 @@ const client = twilio(
 
 // Ruta para enviar una plantilla de WhatsApp
 router.post("/rusell/send-template", async (req, res) => {
-  const { to, templateId, name, service } = req.body;
+  const { to, name, service, templateId } = req.body;
 
+  console.log("Name:", name, "Service:", service);
+  
   try {
     const message = await client.messages.create({
-      // from: process.env.TWILIO_WHATSAPP_NUMBER,
-      from: 'whatsapp:+576045012081',
-      to: `whatsapp:${to}`,
-      contentSid: 'HXa0168c042624758267465be5f5d1635f',
-      // messagingServiceSid: "MG10909cd5658a53ae884fd4b86207165b",
+      contentSid: templateId,
       contentVariables: JSON.stringify({ 1: name, 2: service }),
+      from: 'whatsapp:+5745012081',
+      to: `whatsapp:${to}`,
     });
-    console.log("body", message.body);
+    console.log("Mensaje enviado to:", to);
 
     await new Promise((resolve) => setTimeout(resolve, 2000));
 
     // Traer el mensaje de la plantilla desde el endpoint /message/:sid con axios
     const response = await axios.get(
-      `http://localhost:3020/api/russell/message/${message.sid}`
+      `http://localhost:3020/russell/message/${message.sid}`
     );
 
-    console.log("response", response.data.message.body);
+    // console.log("response", response.data.message.body);
 
     // Guardar el mensaje en la base de datos (simulado)
     // await saveChatHistory(to, response.data.message.body, false);
@@ -78,7 +78,7 @@ router.get("/russell/message/:sid", async (req, res) => {
 
 // Ruta principal
 router.get("/russell/back-test", (req, res) => {
-  res.send("Servidor Back-Russll funcionando correctamente con Typescript y Express.");
+  res.send("Servidor Back-Russell funcionando correctamente con Typescript y Express.");
 });
 
 export default router;

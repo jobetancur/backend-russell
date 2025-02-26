@@ -15,16 +15,16 @@ const client = twilio(
 
 // Ruta para enviar una plantilla de WhatsApp
 router.post("/rusell/send-template", async (req, res) => {
-  const { to, templateId, name } = req.body;
+  const { to, templateId, name, service } = req.body;
 
   try {
     const message = await client.messages.create({
       // from: process.env.TWILIO_WHATSAPP_NUMBER,
-      from: process.env.TWILIO_WHATSAPP_NUMBER,
+      from: 'whatsapp:+576045012081',
       to: `whatsapp:${to}`,
-      contentSid: templateId,
-      messagingServiceSid: "MG10909cd5658a53ae884fd4b86207165b",
-      contentVariables: JSON.stringify({ 1: name }),
+      contentSid: 'HXa0168c042624758267465be5f5d1635f',
+      // messagingServiceSid: "MG10909cd5658a53ae884fd4b86207165b",
+      contentVariables: JSON.stringify({ 1: name, 2: service }),
     });
     console.log("body", message.body);
 
@@ -32,7 +32,7 @@ router.post("/rusell/send-template", async (req, res) => {
 
     // Traer el mensaje de la plantilla desde el endpoint /message/:sid con axios
     const response = await axios.get(
-      `http://ultim.online/api/russell/message/${message.sid}`
+      `http://localhost:3020/api/russell/message/${message.sid}`
     );
 
     console.log("response", response.data.message.body);
@@ -76,15 +76,9 @@ router.get("/russell/message/:sid", async (req, res) => {
   }
 });
 
-router.get("/", (req, res) => {
-  res.send(
-    "Petición GET de prueba para validar que el servidor está corriendo."
-  );
-});
-
 // Ruta principal
-router.get("/api", (req, res) => {
-  res.send("Servidor funcionando correctamente con Typescript y Express.");
+router.get("/russell/back-test", (req, res) => {
+  res.send("Servidor Back-Russll funcionando correctamente con Typescript y Express.");
 });
 
 export default router;

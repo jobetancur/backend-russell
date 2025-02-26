@@ -22,7 +22,7 @@ app.use(cors({
 
 app.options('*', cors());
 
-app.use('/api', routes);
+app.use('/', routes);
 
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);

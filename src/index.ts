@@ -1,9 +1,6 @@
 import express from 'express';
 import routes from './routes/routes';
 import cors from 'cors';
-import schedule from "node-schedule";
-import { checkConversations } from './utils/checkConversations';
-
 
 const app = express();
 app.options('*', cors()); 
@@ -30,7 +27,3 @@ app.use('/api', routes);
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
-
-// Programar la tarea cada minuto
-// schedule.scheduleJob('*/1 * * * *', checkConversations); // Cada minuto
-schedule.scheduleJob("0 * * * *", checkConversations); // Cada hora

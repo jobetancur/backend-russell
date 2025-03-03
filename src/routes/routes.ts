@@ -18,11 +18,14 @@ router.post("/rusell/send-template", async (req, res) => {
   const { to, name, service, templateId } = req.body;
 
   console.log("Name:", name, "Service:", service);
+
+  let localName = name ? name : "señor usuario";
+  let localService = service ? service : "por el que nos contacta";
   
   try {
     const message = await client.messages.create({
       contentSid: templateId,
-      contentVariables: JSON.stringify({ 1: name, 2: service }),
+      contentVariables: JSON.stringify({ 1: localName, 2: localService }),
       from: 'whatsapp:+5745012081',
       to: `whatsapp:${to}`,
     });

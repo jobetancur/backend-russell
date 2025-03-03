@@ -35,7 +35,7 @@ router.post("/rusell/send-template", async (req, res) => {
 
     // Traer el mensaje de la plantilla desde el endpoint /message/:sid con axios
     const response = await axios.get(
-      `http://localhost:3020/russell/message/${message.sid}`
+      `https://ultim.online//russell/message/${message.sid}`
     );
 
     // console.log("response", response.data.message.body);

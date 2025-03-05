@@ -36,7 +36,7 @@ router.post("/rusell/send-template", (req, res) => __awaiter(void 0, void 0, voi
         console.log("Mensaje enviado to:", to);
         yield new Promise((resolve) => setTimeout(resolve, 2000));
         // Traer el mensaje de la plantilla desde el endpoint /message/:sid con axios
-        const response = yield axios_1.default.get(`https://ultim.online//russell/message/${message.sid}`);
+        const response = yield axios_1.default.get(`https://ultim.online/russell/message/${message.sid}`);
         // console.log("response", response.data.message.body);
         // Guardar el mensaje en la base de datos (simulado)
         // await saveChatHistory(to, response.data.message.body, false);

@@ -89,7 +89,7 @@ router.post('/rusell/chat-dashboard', (req, res) => __awaiter(void 0, void 0, vo
                 yield client.messages.create({
                     body: "Audio message",
                     to: `whatsapp:${clientNumber}`,
-                    from: `whatsapp:+5745012080`,
+                    from: 'whatsapp:+5745012081',
                     mediaUrl: [audioUrl],
                 });
                 // Limpiar archivos temporales
@@ -105,7 +105,7 @@ router.post('/rusell/chat-dashboard', (req, res) => __awaiter(void 0, void 0, vo
             const message = yield client.messages.create({
                 body: 'Mensaje con archivo',
                 to: `whatsapp:${clientNumber}`,
-                from: `whatsapp:+5745012080`,
+                from: 'whatsapp:+5745012081',
                 mediaUrl: [newMessage],
             });
             console.log('File message sent successfully:', message.sid);

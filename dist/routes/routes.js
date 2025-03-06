@@ -37,7 +37,7 @@ const firebaseConfig = {
 };
 const app = (0, app_1.initializeApp)(firebaseConfig);
 const storage = (0, storage_1.getStorage)();
-router.post('/rusell/chat-dashboard', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.post('/russell/chat-dashboard', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const twiml = new MessagingResponse();
         const { clientNumber, newMessage } = req.body;

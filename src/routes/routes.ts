@@ -33,6 +33,9 @@ const app = initializeApp(firebaseConfig);
 const storage = getStorage();
 
 router.post('/russell/chat-dashboard', async (req, res) => {
+
+  console.log('Request body:', req.body.clientNumber, req.body.newMessage);
+
   try {
     const twiml = new MessagingResponse();
     const { clientNumber, newMessage } = req.body;

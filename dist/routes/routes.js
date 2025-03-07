@@ -23,6 +23,7 @@ const uuid_1 = require("uuid");
 const path_1 = __importDefault(require("path"));
 const fluent_ffmpeg_1 = __importDefault(require("fluent-ffmpeg"));
 const fs_1 = __importDefault(require("fs"));
+const saveChatHistory_1 = require("../utils/saveChatHistory");
 dotenv_1.default.config();
 const router = express_1.default.Router();
 const MessagingResponse = twilio_1.default.twiml.MessagingResponse;
@@ -155,7 +156,7 @@ router.post("/russell/send-template", (req, res) => __awaiter(void 0, void 0, vo
         const response = yield axios_1.default.get(`https://ultim.online/russell/message/${message.sid}`);
         // console.log("response", response.data.message.body);
         // Guardar el mensaje en la base de datos (simulado)
-        // await saveChatHistory(to, response.data.message.body, false);
+        yield (0, saveChatHistory_1.saveChatHistory)(to, response.data.message.body, false);
         res
             .status(200)
             .json({

@@ -9,6 +9,7 @@ import { v4 as uuidv4 } from 'uuid';
 import path from 'path';
 import ffmpeg from 'fluent-ffmpeg';
 import fs from 'fs';
+import { saveChatHistory } from "../utils/saveChatHistory";
 
 dotenv.config();
 
@@ -174,7 +175,7 @@ router.post("/russell/send-template", async (req, res) => {
     // console.log("response", response.data.message.body);
 
     // Guardar el mensaje en la base de datos (simulado)
-    // await saveChatHistory(to, response.data.message.body, false);
+    await saveChatHistory(to, response.data.message.body, false);
 
     res
       .status(200)

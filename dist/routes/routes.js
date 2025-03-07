@@ -137,7 +137,7 @@ router.post('/russell/chat-dashboard', (req, res) => __awaiter(void 0, void 0, v
     }
 }));
 // Ruta para enviar una plantilla de WhatsApp
-router.post("/rusell/send-template", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.post("/russell/send-template", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { to, name, service, templateId } = req.body;
     console.log("Name:", name, "Service:", service);
     let localName = name ? name : "señor usuario";

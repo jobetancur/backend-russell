@@ -147,7 +147,7 @@ router.post('/russell/chat-dashboard', async (req, res) => {
 });
 
 // Ruta para enviar una plantilla de WhatsApp
-router.post("/rusell/send-template", async (req, res) => {
+router.post("/russell/send-template", async (req, res) => {
   const { to, name, service, templateId } = req.body;
 
   console.log("Name:", name, "Service:", service);
